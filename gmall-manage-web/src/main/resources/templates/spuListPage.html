@@ -7,8 +7,7 @@
 <body>
 <div class="easyui-panel" title=""  data-options="border:true">
     <!-----------------列表 ----------------------------->
-    <table id="spulist_dg" class="easyui-datagrid" title="spu列表"
-           data-options="singleSelect:true,method:'get' ,toolbar:'#spulist_tb'">
+    <table id="spulist_dg" class="easyui-datagrid" title="spu列表" data-options="singleSelect:true,method:'get' ,toolbar:'#spulist_tb'">
         <thead>
         <tr>
             <th data-options="field:'id'" width="10%">商品id </th>
@@ -45,19 +44,35 @@
             onSelect:function(rec){
                    $('#spulist_dg').datagrid({url:'spuList?catalog3Id='+rec.id});
                }
-"    style="width:100px" ></select>
+            " style="width:100px" ></select>
             <a href="#" class="easyui-linkbutton" iconCls="icon-search"  onclick="javascript:reloadSpuList()">刷新列表</a>
         </div>
     </div>
 </div>
 
 <div th:include="spuInfoPage"></div>
-
-<!--<div th:include="skuInfoPage"></div>
-
-<div th:include="skuListPage"></div>-->
+<div th:include="skuInfoPage"></div>
+<div th:include="skuListPage"></div>
 
 <script language="JavaScript">
+
+    function showSkuInfoList() {
+        //打开sku对话框
+        $("#skulist_dlg").dialog("open");
+        //spuInfo
+        var spuInfo = $("#spulist_dg").datagrid("getSelected");
+        //初始化sku数据列表 initSkuListDatagrid
+        initSkuListDatagrid(spuInfo);
+    }
+
+    function addSkuInfo() {
+        // 打开sku添加的对话框
+        $("#sku_dlg").dialog("open");
+        // 初始化对话框
+        var spuInfo = $("#spulist_dg").datagrid("getSelected");
+        initSkuInfoDlg(spuInfo);
+    }
+
     function reloadSpuList() {
         catalog3Id = $("#ctg3ForSpuList").datagrid("getValue");
         if(!catalog3Id){

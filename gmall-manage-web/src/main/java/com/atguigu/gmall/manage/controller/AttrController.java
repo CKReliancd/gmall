@@ -15,7 +15,26 @@ public class AttrController {
     @Reference
     AttrService attrService;
 
-   //deleteAttr
+    @RequestMapping("getAttrListByCtg3Id")
+    @ResponseBody
+    public List<BaseAttrInfo> getAttrListByCtg3Id(String catalog3Id){
+        List<BaseAttrInfo> baseAttrInfos = attrService.getAttrListByCtg3Id(catalog3Id);
+        return baseAttrInfos;
+    }
+
+    @RequestMapping("saveAttr")
+    @ResponseBody
+    public String saveAttr(BaseAttrInfo baseAttrInfo){
+        attrService.saveAttr(baseAttrInfo);
+        return "success";
+    }
+
+    @RequestMapping("updateAttr")
+    @ResponseBody
+    public String updateAttr(BaseAttrInfo baseAttrInfo){
+        attrService.updateAttr(baseAttrInfo);
+        return "success";
+    }
 
     @RequestMapping("deleteAttr")
     @ResponseBody
@@ -29,12 +48,7 @@ public class AttrController {
         return "success";
     }
 
-    @RequestMapping("saveAttr")
-    @ResponseBody
-    public String saveAttr(BaseAttrInfo baseAttrInfo){
-        attrService.saveAttr(baseAttrInfo);
-        return "success";
-    }
+
 
     @RequestMapping("getAttrList")
     @ResponseBody

@@ -14,13 +14,9 @@
     销售属性：  <select name="saleAttr" id="saleAttrSelect"  class="easyui-combobox" data-options="valueField:'id',textField:'name',url:'baseSaleAttrList'" style="width:100px">  </select>
     <br/><br/>
 
-
     <!----------------销售属性值列表---------------------------->
     <table id="spuSaleAttrValueDg" class="easyui-datagrid" title="销售属性值列表"
            data-options="singleSelect:true,method:'get',toolbar:'#spuSaleAttrValueTootbar'" ></table>
-
-
-
 
     <!----------------销售属性值列表工具栏----------------------->
     <div id="spuSaleAttrValueTootbar" style="padding:5px;height:auto"  >
@@ -42,6 +38,8 @@
             var data = $("#spuSaleAttrValueDg").datagrid("getData");
             console.log(JSON.stringify(data));
             // 保存spu对话框的销售属性的暂存区
+
+            //getValue target 从编辑器中获取值。
             var saleAttrId = $("#saleAttrSelect").combobox("getValue");
             var saleAttrName = $("#saleAttrSelect").combobox("getText");
             $("#spuSaleAttrDg").datagrid("appendRow",{
@@ -94,6 +92,10 @@
             var index = $("#spuSaleAttrValueDg").datagrid("getRowIndex",row);
             // 根据行号删除
             $("#spuSaleAttrValueDg").datagrid("deleteRow",index);
+        }
+
+        function closeSpuSaleAttr() {
+            $("#spuSaleAttr_dlg").dialog("close")
         }
     </script>
 </div>

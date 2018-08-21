@@ -11,4 +11,8 @@ public interface AttrService {
     void saveAttr(BaseAttrInfo baseAttrInfo);
 
     void deleteAttr(String id) throws Exception;
+
+    List<BaseAttrInfo> getAttrListByCtg3Id(String catalog3Id);
+
+    void updateAttr(BaseAttrInfo baseAttrInfo);
 }
